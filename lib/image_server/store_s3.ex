@@ -9,6 +9,11 @@ defmodule ImageServer.StoreS3 do
     |> ExAws.request!()
   end
 
+  def get_url(file_name) do
+    System.get_env() |> IO.inspect()
+    "https://fly.storage.tigris.dev/#{@bucket_name}/#{file_name}"
+  end
+
   def test do
     file_name = "encodeTest7.jpg"
     image_data_base64 = ImageServer.TestImage.img()
