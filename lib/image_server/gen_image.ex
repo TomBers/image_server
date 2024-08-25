@@ -1,4 +1,5 @@
 defmodule ImageServer.GenImage do
+  @api_url "https://api.openai.com/v1/images/generations"
   def create_image(api_key, file_name, prompt, bucket_name, save_fn) do
     headers = [
       {"Content-Type", "application/json"},
@@ -26,6 +27,7 @@ defmodule ImageServer.GenImage do
 
       _ ->
         IO.puts("Failed to generate image: #{response.status}")
+        :error
     end
   end
 end
