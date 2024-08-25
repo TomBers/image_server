@@ -17,7 +17,8 @@ defmodule ImageServer.GenImage do
     response =
       Req.post!(@api_url,
         headers: headers,
-        json: body
+        json: body,
+        receive_timeout: 120_000
       )
 
     case response.status do
@@ -27,6 +28,7 @@ defmodule ImageServer.GenImage do
 
       _ ->
         IO.puts("Failed to generate image: #{response.status}")
+        IO.inspect(response, label: response)
         :error
     end
   end
