@@ -12,15 +12,13 @@ defmodule ImageServerWeb.PageController do
     if(user == System.fetch_env!("USER_API_KEY")) do
       bucket = StoreS3.get_bucket_name()
 
-      spawn(fn ->
-        ImageServer.GenImage.create_image(
-          api_key,
-          file_name,
-          prompt,
-          bucket,
-          &StoreS3.store_image/3
-        )
-      end)
+      ImageServer.GenImage.create_image(
+        api_key,
+        file_name,
+        prompt,
+        bucket,
+        &StoreS3.store_image/3
+      )
 
       json(conn, %{img_url: ImageServer.StoreS3.get_url(file_name, bucket)})
     else
