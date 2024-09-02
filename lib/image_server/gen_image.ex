@@ -7,11 +7,11 @@ defmodule ImageServer.GenImage do
     ]
 
     body = %{
-      "model" => "dall-e-2",
+      "model" => "dall-e-3",
       "prompt" => prompt,
       "n" => 1,
       "response_format" => "b64_json",
-      "size" => "512x512"
+      "size" => "1024x1024"
     }
 
     response =
