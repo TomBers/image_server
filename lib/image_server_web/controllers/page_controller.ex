@@ -25,4 +25,9 @@ defmodule ImageServerWeb.PageController do
       json(conn, %{error: "Incorrect API Key"})
     end
   end
+
+  def test_image(conn, _params) do
+    :timer.sleep(2000)
+    json(conn, %{img_url: "https://placehold.co/512x512"})
+  end
 end
